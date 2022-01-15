@@ -11,6 +11,10 @@ buildscript {
         kotlinx_coroutines_version = "1.5.0"
         mockito_version = "4.0.0"
         activity_version = "1.4.0"
+        mockk_version = "1.12.2"
+        core_ktx_version = "1.7.0"
+
+        hilt_android_testing_version = "2.38.1"
     }
     repositories {
         google()

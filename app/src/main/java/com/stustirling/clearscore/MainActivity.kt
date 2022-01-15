@@ -5,8 +5,11 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import com.google.android.material.snackbar.Snackbar
 import com.stustirling.clearscore.core.ui.ViewState
 import com.stustirling.clearscore.databinding.ActivityMainBinding
+import com.stustirling.clearscore.model.CreditScoreUiModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,28 +23,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         configureUi()
         observeState()
     }
 
     private fun configureUi() {
+        binding.retry.setOnClickListener {
+            viewModel.retryCreditScoreRetrieval()
+        }
     }
 
     private fun observeState() {
         viewModel.stateLiveData.observe(this) { state ->
-            binding.loading.visibility = if (state == ViewState.Loading) View.VISIBLE else View.GONE
 
-            if (state is ViewState.Error) {
-                AlertDialog.Builder(this)
-                    .setTitle(R.string.hosts_retrieval_error_title)
-                    .setMessage(R.string.hosts_retrieval_error_content)
-                    .setPositiveButton(
-                        R.string.hosts_retrieval_error_positive
-                    ) { _, _ -> viewModel.retryCreditScoreRetrieval() }
-                    .setCancelable(false)
-                    .show()
+            binding.loading.isVisible = state == ViewState.Loading
+            binding.errorContainer.isVisible = state is ViewState.Error
+
+            if (state is ViewState.Success) {
+                updateCreditScore(state.item)
             }
         }
+    }
+
+    private fun updateCreditScore(creditScoreUiModel: CreditScoreUiModel) {
+        binding.creditScoreDoughnut.isVisible = true
+        binding.creditScoreDoughnut.setCreditScore(creditScoreUiModel)
     }
 }

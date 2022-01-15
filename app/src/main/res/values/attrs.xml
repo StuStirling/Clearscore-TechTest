@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CreditScoreDoughnutView">
+        <attr name="dvTextColor" format="color"/>
+        <attr name="dvOuterCircleColor" format="color"/>
+    </declare-styleable>
+</resources>

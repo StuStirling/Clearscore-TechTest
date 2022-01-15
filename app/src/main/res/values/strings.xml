@@ -1,7 +1,9 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Clearscore</string>
 
-    <string name="credit_score_retrieval_error_title">Error</string>
     <string name="credit_score_retrieval_error_content">Something went wrong. Try again</string>
     <string name="credit_score_retrieval_error_positive">Retry</string>
+
+    <string name="credit_score_doughtnut_view_title">Your credit score is</string>
+    <string name="credit_score_doughtnut_view_max_score">out of <xliff:g id="max_score_value" example="700">%1$d</xliff:g></string>
 </resources>
