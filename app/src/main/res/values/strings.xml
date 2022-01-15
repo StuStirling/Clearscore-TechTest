@@ -1,0 +1,7 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Clearscore</string>
+
+    <string name="credit_score_retrieval_error_title">Error</string>
+    <string name="credit_score_retrieval_error_content">Something went wrong. Try again</string>
+    <string name="credit_score_retrieval_error_positive">Retry</string>
+</resources>
